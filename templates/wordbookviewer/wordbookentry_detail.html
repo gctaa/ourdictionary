@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block topbar %}
+  <nav>
+            <div id="login">
+            {% if user.is_authenticated %}
+            <p>{{user.username}}(<a href="/logout/">Logout</a>)     <a href="/words/">Home</a></p>
+            {% else %}
+            <p><a href="/login/">Login</a>    <a href="/words/">Home</a></p>
+            {% endif %}
+            </div>
+        </nav>
+{% endblock %}
+{% block content %}
+<div class="content">
+<div class="text_content">
+<div id="info">
+<h1 id="name">{{object.name}} <span class="part">({{object.part}})</span></h1>
+<h3>Definition:</h3>
+<p>{{object.definition}}</p>
+<h3>Synonyms:</h3>
+<p>{{object.synonyms}}</p>
+<h3>Example Sentence:</h3>
+<p>{{object.example_sentence}}</p>
+</div>
+<div id="credits">
+<h5>Created by {{object.user_creator.get_full_name}} on {{object.date_created}}</h5>
+<h5>Last Modified by {{object.user_last_modified.get_full_name}} on {{object.date_modified}}</h5>
+</div>
+</div>
+<div class="photo_content">
+{% if object.photo %}
+<div id="photo">
+<a href="{{ object.photo.url }}"><img alt="" src="{{ object.photo.thumbnail.url }}"/></a>
+</div>
+{% endif %}
+<div id="caption">
+<p>{{object.caption}}</p>
+</div>
+</div>
+</div>
+<div class="editlink"><a href="/update_entry/{{object.id}}/">Edit this entry</a></div>
+{% endblock %}
+

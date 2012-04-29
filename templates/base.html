@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/styles/dictionary.css" />
+    <title>{% block title %}WordBook{% endblock %}</title>
+</head>
+
+<body>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+</script>
+<div class="center"> 
+<div class="back"> 
+</div>
+
+<div id="logo_header">
+<h1>Our Dictionary</h1>
+</div>
+<div class="box">
+</div>
+    <div id="navbar">
+        {% block topbar %}
+        <nav>
+	<div id="Example">
+	<div class="bottom">
+            {% if user.is_authenticated %}
+
+            <p>{{user.username}}(<a href="/logout/">Logout</a>)     <a href="/words/">Home</a></p>
+            {% else %}
+            <p><a href="/login/">Login</a>    <a href="/words/">Home</a></p>
+            {% endif %}
+	</div>
+	</div>
+        </nav>
+        {% endblock %}
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+<div class="line">
+</div>
+
+</div>
+</body>
+<html>

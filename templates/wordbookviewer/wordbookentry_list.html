@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script  type="text/javascript" src="http://ourdictionary.gctaa.net/static/js/jquery.listnav.min-2.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$("#wordlist-ul").listnav({showCounts:false});
+});
+</script>
+<div id="wordlist">
+<div id="wordlist-ul-nav"></div>
+<p><a href="/create_entry/">Add a word...</a></p>
+<ul id="wordlist-ul">
+{% for item in object_list %}
+<li><p><a href="/words/{{item.id}}/">{{item}}</a><p></li>
+{% endfor %}
+{% if user.is_authenticated %}
+{% endif %}
+</div>
+{% endblock %}
