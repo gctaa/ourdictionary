@@ -13,26 +13,17 @@ div.back {
         background-color:#fcfcfc;
 }   
 
-div.h1 {
-    color:black ;
-    font-size:19px;
-    font-family:"Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
-	text-shadow:0 1px 1px black;
+h1 {
+    font-size:30px;
+    margin: 0;
+    font-family: "Droid Serif", serif;
+    color: #3b3b3b;
+    font-weight: normal;
+    text-shadow:0 1px 1px black;
     text-align: center;
-    padding-top:0px;
-    margin-top: -74px;
+    margin-top: -40px;
     height:90px;
 }
-
-/*div.box {
-position:absolute;
-width:30px;
-height:30px;
-background-color:transparent;
-border:2px solid black;
-margin-left: 85%;
-width:30%;
-}*/ 
 
 div#wordlist {
 float:left;
@@ -44,7 +35,6 @@ color: #fff;
 }
 #navbar{
 height:15px;
-
 }
 #Example {
 border-top-left-radius
@@ -153,6 +143,32 @@ div.line {
     height: 9px;
     background-color:#cccccc;
 }
-hr {
-    width: 70%;
+
+.ln-letters { 
+    overflow:hidden;
+ }
+
+.ln-letters a {
+    font-size:0.9em;
+    display:block; 
+    float:left; 
+    padding:4px 8px;
+    border:2px solid silver; 
+    border-right:none; 
+    text-decoration:none;
+}
+.ln-letters a:hover,
+.ln-letters a.ln-selected 
+{ 
+    background-color:#eaeaea; 
+}
+.ln-letters a.ln-disabled { 
+    color:#ccc; 
+}
+.ln-letter-count { 
+    text-align:center; 
+    font-size:0.8em; 
+    line-height:1; 
+    margin-top:90px; 
+    color:#336699; 
 }
