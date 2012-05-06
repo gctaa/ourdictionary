@@ -19,7 +19,7 @@ add_introspection_rules(rules, ["^stdimage\.fields",])
 
 
 
-class WordBookEntry(models.Model):
+class WordEntry(models.Model):
       PART_CHOICES = (
       ("noun","Noun"),
       ("verb","Verb"),

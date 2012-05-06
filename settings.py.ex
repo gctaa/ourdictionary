@@ -1,4 +1,4 @@
-# Django settings for wordbook project.
+# Django settings for ourdictionary  project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -104,14 +104,13 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    "/opt/wordbook/templates",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 
 INSTALLED_APPS = (
-    'wordbookviewer',
+    'wordviewer',
     'south',
     'django.contrib.auth',
     'django.contrib.contenttypes',

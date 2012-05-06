@@ -1,22 +1,33 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
+
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
-        # Adding field 'WordBookEntry.synonyms'
-        db.add_column('wordbookviewer_wordbookentry', 'synonyms', self.gf('django.db.models.fields.CharField')(default='', max_length=200), keep_default=False)
-
+        # Adding model 'WordEntry'
+        db.create_table('wordviewer_wordentry', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('part', self.gf('django.db.models.fields.CharField')(max_length=15)),
+            ('definition', self.gf('django.db.models.fields.CharField')(max_length=140)),
+            ('synonyms', self.gf('django.db.models.fields.CharField')(max_length=200, blank=True)),
+            ('example_sentence', self.gf('django.db.models.fields.CharField')(max_length=140, blank=True)),
+            ('photo', self.gf('stdimage.fields.StdImageField')(blank=True, max_length=100, thumbnail_size={'width': 300, 'force': None, 'height': 225}, size={'width': 1024, 'force': None, 'height': 768})),
+            ('caption', self.gf('django.db.models.fields.CharField')(max_length=140, blank=True)),
+            ('user_creator', self.gf('django.db.models.fields.related.ForeignKey')(related_name='entry_creators', to=orm['auth.User'])),
+            ('user_last_modified', self.gf('django.db.models.fields.related.ForeignKey')(related_name='entry_modifiers', to=orm['auth.User'])),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('date_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+        ))
+        db.send_create_signal('wordviewer', ['WordEntry'])
 
     def backwards(self, orm):
-        
-        # Deleting field 'WordBookEntry.synonyms'
-        db.delete_column('wordbookviewer_wordbookentry', 'synonyms')
-
+        # Deleting model 'WordEntry'
+        db.delete_table('wordviewer_wordentry')
 
     models = {
         'auth.group': {
@@ -55,21 +66,21 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'wordbookviewer.wordbookentry': {
-            'Meta': {'object_name': 'WordBookEntry'},
-            'caption': ('django.db.models.fields.CharField', [], {'max_length': '140'}),
+        'wordviewer.wordentry': {
+            'Meta': {'object_name': 'WordEntry'},
+            'caption': ('django.db.models.fields.CharField', [], {'max_length': '140', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'definition': ('django.db.models.fields.CharField', [], {'max_length': '140'}),
-            'example_sentence': ('django.db.models.fields.CharField', [], {'max_length': '140'}),
+            'example_sentence': ('django.db.models.fields.CharField', [], {'max_length': '140', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'part': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
-            'photo': ('stdimage.fields.StdImageField', [], {'max_length': '100', 'thumbnail_size': "{'width': 300, 'force': None, 'height': 225}", 'size': "{'width': 1024, 'force': None, 'height': 768}"}),
-            'synonyms': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'photo': ('stdimage.fields.StdImageField', [], {'blank': 'True', 'max_length': '100', 'thumbnail_size': "{'width': 300, 'force': None, 'height': 225}", 'size': "{'width': 1024, 'force': None, 'height': 768}"}),
+            'synonyms': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
             'user_creator': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'entry_creators'", 'to': "orm['auth.User']"}),
             'user_last_modified': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'entry_modifiers'", 'to': "orm['auth.User']"})
         }
     }
 
-    complete_apps = ['wordbookviewer']
+    complete_apps = ['wordviewer']
