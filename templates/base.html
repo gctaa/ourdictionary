@@ -21,8 +21,6 @@
     <div id="navbar">
         {% block topbar %}
         <nav>
-	<div id="Example">
-	<div class="bottom">
             {% if user.is_authenticated %}
 
             <p>{{user.username}}(<a href="/logout/">Logout</a>)     <a href="/words/">Home</a></p>
