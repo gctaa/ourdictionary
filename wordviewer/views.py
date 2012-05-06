@@ -6,19 +6,19 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
-from wordbookviewer.models import WordBookEntry
+from wordviewer.models import WordEntry
 
-class WordBookEntryForm(forms.ModelForm):
+class WordEntryForm(forms.ModelForm):
     class Meta:
-       model = WordBookEntry
+       model = WordEntry
        exclude = ("user_creator","user_last_modified")
     
-class WordBookEntryCreationView(CreateView):
+class WordEntryCreationView(CreateView):
     
-    form_class = WordBookEntryForm
+    form_class = WordEntryForm
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(WordBookEntryCreationView, self).dispatch(*args, **kwargs)
+        return super(WordEntryCreationView, self).dispatch(*args, **kwargs)
     def form_valid(self, form):
         object = form.save(commit=False)
         object.user_creator = self.request.user
@@ -26,12 +26,12 @@ class WordBookEntryCreationView(CreateView):
         object.save()
         return HttpResponseRedirect("/words/")
 
-class WordBookEntryUpdateView(UpdateView):
-    model = WordBookEntry
-    form_class = WordBookEntryForm
+class WordEntryUpdateView(UpdateView):
+    model = WordEntry
+    form_class = WordEntryForm
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(WordBookEntryUpdateView, self).dispatch(*args, **kwargs)
+        return super(WordEntryUpdateView, self).dispatch(*args, **kwargs)
     def form_valid(self, form):
         object = form.save(commit=False)
         object.user_last_modified = self.request.user
