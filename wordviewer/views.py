@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -39,12 +40,14 @@ class WordEntryUpdateView(UpdateView):
         return HttpResponseRedirect("/words/")
 
 class TokenRegistrationForm(UserCreationForm):
-    token = forms.CharField(max_length=20,label="Registration Token")
+    if settings.REGISTRATION_TOKEN:
+        token = forms.CharField(max_length=20,label="Registration Token")
     def clean_token(self):
-        data = self.cleaned_data["token"]
-        if data != "hilt_institute":
-            raise forms.ValidationError("Incorrect Registration Token!")
-        return data
+        if settings.REGISTRATION_TOKEN:
+            data = self.cleaned_data["token"]
+            if data != settings.REGISTRATION_TOKEN:
+                raise forms.ValidationError("Incorrect Registration Token!")
+            return data
             
 def register(request):
     if request.method == 'POST':
