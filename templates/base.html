@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/static/styles/style.css" />
-    <title>{% block title %}Our Dictionary{% endblock %}</title>
+<link rel="stylesheet" href="/static/styles/style.css" />
+<title>{% block title %}Our Dictionary{% endblock %}</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+</script>
+{% block jsplugins %}
+{% endblock %}
 </head>
 
 <body>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-</script>
-<div class="center"> 
-<div class="back"> 
-</div>
-
-<div id="logo_header">
+<header>
 <h1>Our Dictionary</h1>
-</div>
+<a href="/words/">Home</a>
+{% block topbar %}
+<span>
+{% if user.is_authenticated %}
+{{user.username}} <a href="/logout/">Logout</a>
+{% else %}
+<a href="/login/">Login</a>
+{% endif %}
+</span>
+{% endblock %}
+</header>
 
-<div class="box">
-</div>
-    <div id="navbar">
-        {% block topbar %}
-        <nav>
-            {% if user.is_authenticated %}
+<section>
+{% block content %}{% endblock %}
+</section>
 
-            <p>{{user.username}}(<a href="/logout/">Logout</a>)     <a href="/words/">Home</a></p>
-            {% else %}
-            <p><a href="/login/">Login</a>    <a href="/words/">Home</a></p>
-            {% endif %}
-        </nav>
-        {% endblock %}
-    </div>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-<div class="line">
-</div>
+<footer>
+</footer>
 
-</div>
 </body>
-<html>
+</html>

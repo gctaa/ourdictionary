@@ -12,7 +12,7 @@ from wordviewer.models import WordEntry
 class WordEntryForm(forms.ModelForm):
     class Meta:
        model = WordEntry
-       exclude = ("user_creator","user_last_modified")
+       exclude = ("user_creator", "user_last_modified")
     
 class WordEntryCreationView(CreateView):
     
@@ -54,7 +54,7 @@ class RichUserCreationForm(UserCreationForm):
         return user
 
 class TokenRegistrationForm(RichUserCreationForm):
-    token = forms.CharField(max_length=20,label="Registration Token")
+    token = forms.CharField(max_length=20, label="Registration Token")
     def clean_token(self):
         data = self.cleaned_data["token"]
         if data != settings.REGISTRATION_TOKEN:
@@ -77,4 +77,4 @@ def register(request):
             form = RichUserCreationForm()
     return render_to_response("registration/register.html", {
         'form': form,
-    },context_instance=RequestContext(request))
+    }, context_instance=RequestContext(request))
