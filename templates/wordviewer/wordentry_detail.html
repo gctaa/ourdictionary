@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block topbar %}
-  <nav>
-            <div id="login">
-            {% if user.is_authenticated %}
-            <p>{{user.username}}(<a href="/logout/">Logout</a>)     <a href="/words/">Home</a></p>
-            {% else %}
-            <p><a href="/login/">Login</a>    <a href="/words/">Home</a></p>
-            {% endif %}
-            </div>
-        </nav>
+<nav>
+    <div id="login">
+    {% if user.is_authenticated %}
+    <p>{{user.username}}(<a href="/logout/">Logout</a>)  <a href="/words/">Home</a></p>
+    {% else %}
+    <p><a href="/login/">Login</a>    <a href="/words/">Home</a></p>
+    {% endif %}
+    </div>
+</nav>
 {% endblock %}
 {% block content %}
 <div class="content">

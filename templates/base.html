@@ -4,29 +4,19 @@
 <link rel="stylesheet" href="/static/styles/style.css" />
 <title>{% block title %}Our Dictionary{% endblock %}</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-</script>
-{% block jsplugins %}
-{% endblock %}
-</head>
+</script>{% block scripts %}{% endblock %}</head>
 
 <body>
 <header>
 <h1>Our Dictionary</h1>
 <a href="/words/">Home</a>
-{% block topbar %}
-<span>
-{% if user.is_authenticated %}
-{{user.username}} <a href="/logout/">Logout</a>
+{% block topbar %}<span>
+{% if user.is_authenticated %}{{user.username}} <a href="/logout/">Logout</a>
 {% else %}
-<a href="/login/">Login</a>
-{% endif %}
-</span>
-{% endblock %}
+<a href="/login/">Login</a>{% endif %}</span>{% endblock %}
 </header>
 
-<section>
-{% block content %}{% endblock %}
-</section>
+<section>{% block content %}{% endblock %}</section>
 
 <footer>
 </footer>
