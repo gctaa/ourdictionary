@@ -1,28 +1,97 @@
-/* style for jQuery nav plugin */
-.ln-letters { 
-    overflow:hidden;
+/* Import Google Fonts */
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+body {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    font-family: 'Oswald', sans-serif;
 }
-.ln-letters a {
+/* header */
+header h1 {
+    padding: 20px;
+    margin: 0;
+    text-align: right;
+    background-color: #9932CC;
+    color: #FFF;
+}
+header h1 a, header h1 a:visited, h1 span {
+    float: left;
+    font-weight: normal;
+    font-size: 0.7em;
+    margin-right: 15px;
+}
+header h1 a, header h1 a:visited {
+    text-decoration: none;
+    color: #D8BFD8;
+}
+header h2 {
+    margin: 0px 0px 0px 0px;
+    padding: 5px 70px 5px 25px;
+    border: 1px solid #9932CC;
+    border-radius: 0px 0px 30px 30px;
+    text-align: right;
+}
+header h2 a, header h2 a:visited {
+    text-decoration: none;
+    font-weight: normal;
+}
+/* jQuery nav plugin */
+div#wordlist-nav {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+.ln-letters { 
+    overflow: hidden;
+}
+.ln-letters a, .ln-letters a:visited {
     font-size: 0.9em;
     display: block; 
     float: left; 
     padding: 4px 8px;
-    border: 2px solid silver; 
+    border: 1px solid #C6F; 
+    border-top: none;
     border-right: none; 
     text-decoration: none;
+    color: #9400D3;
 }
-.ln-letters a:hover,
-.ln-letters a.ln-selected 
-{ 
-    background-color: #eaeaea; 
+.ln-letters a:last-of-type {
+    border: 1px solid #C6F; 
+    border-top: none;
+}
+.ln-letters a:hover, .ln-letters a.ln-selected { 
+    background-color: #EAEAEA; 
 }
 .ln-letters a.ln-disabled { 
-    color: #ccc; 
+    color: #CCC; 
 }
 .ln-letter-count { 
     text-align: center; 
     font-size: 0.8em; 
     line-height: 1; 
-    margin-top: 90px; 
-    color: #336699; 
+    margin-top: 125px; 
+    color: #4B0082;
+}
+/* word list */
+ul#wordlist li {
+    list-style-type: none;
+    margin-top: 7px;
+}
+ul#wordlist a, ul#wordlist a:visited {
+    color: #4B0082;
+    text-decoration: none;
+}
+/* footer */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid #C6F;
+    padding-top: 10px;
+    font-size: 0.7em;
+}
+footer a, footer a:visited {
+    text-decoration: none;
+    color: #D8BFD8;
+    margin-right: 5px;
 }
