@@ -14,7 +14,7 @@ header h1 {
     background-color: #9932CC;
     color: #FFF;
 }
-header h1 a, header h1 a:visited, h1 span {
+header h1 a, header h1 a:visited, header h1 span {
     float: left;
     font-weight: normal;
     font-size: 0.7em;
@@ -73,21 +73,71 @@ div#wordlist-nav {
     margin-top: 125px; 
     color: #4B0082;
 }
-/* word list */
-a#addword, a#addword:visited {
-    display: inline-block;
-    margin-left: 40px;
-    padding: 2px 5px 2px 5px;
-    background-color: #DDD;
-    border: 1px solid #4B0082;
-    border-radius: 10px;
+/* section */
+section {
+    margin: 0px 30px 0px 30px;
+    padding: 10px;
+    border: 1px dotted #D8BFD8;
+    font-family: Arial, Helvitica, sans-serif;
+}
+/* word definition */
+h1#word {
+    margin-left: 30px;
     color: #4B0082;
-    text-decoration: none;
-    font-size: 0.7em;
+}
+div#definition {
+    display: table;
+    width: 100%;
+}
+div#definition dl {
+    display: table-cell;
+    float: left;
+    vertical-align: top;
+}
+div#definition dt {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    color: #4B0082;
+}
+div#definition dt:first-child {
+    margin-top: -10px;
+}
+div#definition dd {
+    margin-left: 20px;
+    color: #555;
+}
+div#definition figure {
+    display: table-cell;
+    width: 200px;
+    vertical-align: top;
+}
+div#definition figure img {
+    width: 200px;
+    border: 0;
+    margin-left: 30px;
+    margin-right: 5px;
+}
+div#definition figcaption {
+    text-align: center;
+    font-size: small;
+    color: #777;
+}
+/* word list */
+ul#wordlist {
+    display: table;
+    width: 100%;
 }
 ul#wordlist li {
     list-style-type: none;
+    width: 23%;
+    float: left;
     margin-top: 7px;
+    margin-right: 10px;
+}
+ul#wordlist li:nth-of-type(4 * n) {
+    float: none;
 }
 ul#wordlist a, ul#wordlist a:visited {
     color: #4B0082;
@@ -96,13 +146,28 @@ ul#wordlist a, ul#wordlist a:visited {
 /* footer */
 footer {
     text-align: center;
-    margin-top: 50px;
-    border-top: 1px solid #C6F;
-    padding-top: 10px;
+    margin-top: 10px;
+    padding-top: 8px;
     font-size: 0.7em;
+}
+footer a#button, footer a#button:visited {
+    float: left;
+    margin-left: 20px;
+    padding: 2px 5px 2px 5px;
+    background-color: #DDD;
+    border: 1px solid #4B0082;
+    border-radius: 10px;
+    color: #4B0082;
+    text-decoration: none;
+    font-size: 0.9em;
 }
 footer a, footer a:visited {
     text-decoration: none;
     color: #D8BFD8;
     margin-right: 5px;
+}
+footer span {
+    margin-right: 10px;
+    color: #60A;
+    font-size: 0.9em;
 }

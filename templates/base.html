@@ -11,10 +11,11 @@
 <h1><nav><a href="/words/">Home</a> {% block topbar %}{% if user.is_authenticated %}<a href="/logout/">Logout</a><span>{{user.username}}</span>{% else %}<a href="/login/">Login</a>{% endif %}{% endblock %}</nav> Our Dictionary</h1>
 {% block letter-nav %}{% endblock %}
 </header>
-
+{% block heading %}{% endblock %}
 <section>{% block content %}{% endblock %}</section>
 
 <footer>
+{% block footer %}{% endblock %}
 <a href="http://validator.w3.org/check/referer">
 <strong> HTML </strong> Valid! </a> 
 <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
