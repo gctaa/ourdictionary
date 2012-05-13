@@ -40,7 +40,7 @@ div#wordlist-nav {
     display: table;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 .ln-letters { 
     overflow: hidden;
@@ -74,6 +74,17 @@ div#wordlist-nav {
     color: #4B0082;
 }
 /* word list */
+a#addword, a#addword:visited {
+    display: inline-block;
+    margin-left: 40px;
+    padding: 2px 5px 2px 5px;
+    background-color: #DDD;
+    border: 1px solid #4B0082;
+    border-radius: 10px;
+    color: #4B0082;
+    text-decoration: none;
+    font-size: 0.7em;
+}
 ul#wordlist li {
     list-style-type: none;
     margin-top: 7px;
