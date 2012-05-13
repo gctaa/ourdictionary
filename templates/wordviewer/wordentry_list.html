@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block scripts %}
-<script  type="text/javascript" src="http://ourdictionary.gctaa.net/static/js/jquery.listnav.min-2.1.js"></script>
+<script  type="text/javascript" src="/static/js/jquery.listnav.min-2.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $("#wordlist").listnav({includeNums:false});
@@ -11,10 +11,8 @@ $(document).ready(function() {
 
 {% block content %}
 <div id="wordlist-nav"></div>
-<a href="/create_entry/">Add a word...</a>
+{% if user.is_authenticated %}<a href="/create_entry/">Add a word...</a>{% endif %}
 <ul id="wordlist">
-{% for item in object_list %}
-<li><a href="/words/{{item.id}}/">{{item}}</a></li>
-{% endfor %}
-{% if user.is_authenticated %}{% endif %}</ul>
+{% for item in object_list %}  <li><a href="/words/{{item.id}}/">{{item}}</a></li>
+{% endfor %}</ul>
 {% endblock %}

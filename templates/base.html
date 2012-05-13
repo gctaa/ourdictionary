@@ -8,17 +8,17 @@
 
 <body>
 <header>
-<h1>Our Dictionary</h1>
-<a href="/words/">Home</a>
-{% block topbar %}<span>
-{% if user.is_authenticated %}{{user.username}} <a href="/logout/">Logout</a>
-{% else %}
-<a href="/login/">Login</a>{% endif %}</span>{% endblock %}
+<h1><a href="/words/">Home</a> Our Dictionary</h1>
+<h2>{% block topbar %}{% if user.is_authenticated %}{{user.username}} <a href="/logout/">Logout</a>{% else %}<a href="/login/">Login</a>{% endif %}{% endblock %}</h2>
 </header>
 
 <section>{% block content %}{% endblock %}</section>
 
 <footer>
+<a href="http://validator.w3.org/check/referer">
+<strong> HTML </strong> Valid! </a> | 
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
 </footer>
 
 </body>
