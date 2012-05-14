@@ -1,174 +1,173 @@
+/* Import Google Fonts */
+@import url(http://fonts.googleapis.com/css?family=Oswald);
 body {
-background-color:#cccccc;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    font-family: 'Oswald', sans-serif;
 }
-
-div.center {
-        padding: 2px;
-        margin:auto;
-        width: 95%; 
-}
-div.back {
-        padding: 20px;
-        border:2px black solid;
-        background-color:#fcfcfc;
-}   
-
-h1 {
-    font-size:30px;
+/* header */
+header h1 {
+    padding: 20px;
     margin: 0;
-    font-family: "Droid Serif", serif;
-    color: #3b3b3b;
+    text-align: right;
+    background-color: #9932CC;
+    color: #FFF;
+}
+header h1 a, header h1 a:visited, header h1 span {
+    float: left;
     font-weight: normal;
-    text-shadow:0 1px 1px black;
-    text-align: center;
-    margin-top: -40px;
-    height:90px;
+    font-size: 0.7em;
+    margin-right: 15px;
 }
-
-div#wordlist {
-float:left;
-font-family: 'Singlet', cursive;
-    font-size:20px;
+header h1 a, header h1 a:visited {
+    text-decoration: none;
+    color: #D8BFD8;
 }
-a:hover {
-color: #fff;
+header h2 {
+    margin: 0px 0px 0px 0px;
+    padding: 5px 70px 5px 25px;
+    border: 1px solid #9932CC;
+    border-radius: 0px 0px 30px 30px;
+    text-align: right;
 }
-#navbar{
-height:15px;
+header h2 a, header h2 a:visited {
+    text-decoration: none;
+    font-weight: normal;
 }
-#Example {
-border-top-left-radius
-border-top-right-radius
-border-bottom-right-radius
-border-bottom-left-radius
-padding-right:50px;
+/* jQuery nav plugin */
+div#wordlist-nav {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
 }
-
-div.bottom{
-width:100px; height:45px;
-border-top:15px solid #737CA1;
-border-right:20px solid white;
-padding-right:5px;
-padding-left:5px;
-border-bottom:15px solid #737CA1;
-border-left:20px solid white;
-}
-
-nav{
-float:right;
-}
-#name{
-    color: #CC0000;
-}
-h3{
-    color: #073763;
-}
-.part{
-    color: #073763;
-    font-size: medium;
-}
-.editlink{
-    float: left;
-}
-div.content{
-    width:600px ;
-    display: block;
-}
-div.text_content{
-    float: left;
-    width: 70%;
-}
-
-div.photo_content{
-    float: right;
-    width: 30%;
-
-}
-
-/*#top_navigation {
-background : transparent;
-width: 800px;
-height : 77px;
-list-style : none;
-margin-top : 7px;
-margin-bottom : 11px;
-width : 100%;
-}
-ul.nav {
-background : transparent;
-width: 800px;
-height : 57px;
-line-height : 31px;
-list-style : none;
-padding : 0 10px;
-font-size : 14px;
-}
-ul.nav li {
-display : inline;
-padding : 0;
-background : transparent;
-}
-ul.nav a {
-background : transparent;
-height : 30px;
-font-size : 16px;
-color : #808080;
-float : left;
-padding : 11px 19px 11px 16px;
-text-decoration : none;
-border-top: 1px solid #252525;
-border-bottom : 4px solid #252525;
-border-left : 1px solid transparent;
-border-right : 1px solid transparent;
-border-radius : 4px;
-border-radius : 4px;
-border-radius: 4px;
-}
-ul.nav a:hover {
-background : #252525;
-border-top : 1px solid #252525;
-border-bottom : 4px solid #000;
-border-left : 1px solid #252525;
-border-right : 1px solid #252525;
-color : #FFF;
-padding : 11px 19px 11px 16px;
-border-radius : 4px;
-border-radius : 4px;
-border-radius: 4px;
-}*/
-
-
-div.line {
-    width: 100%;
-    height: 9px;
-    background-color:#cccccc;
-}
-
 .ln-letters { 
-    overflow:hidden;
- }
-
-.ln-letters a {
-    font-size:0.9em;
-    display:block; 
-    float:left; 
-    padding:4px 8px;
-    border:2px solid silver; 
-    border-right:none; 
-    text-decoration:none;
+    overflow: hidden;
 }
-.ln-letters a:hover,
-.ln-letters a.ln-selected 
-{ 
-    background-color:#eaeaea; 
+.ln-letters a, .ln-letters a:visited {
+    font-size: 0.9em;
+    display: block; 
+    float: left; 
+    padding: 4px 8px;
+    border: 1px solid #C6F; 
+    border-top: none;
+    border-right: none; 
+    text-decoration: none;
+    color: #9400D3;
+}
+.ln-letters a:last-of-type {
+    border: 1px solid #C6F; 
+    border-top: none;
+}
+.ln-letters a:hover, .ln-letters a.ln-selected { 
+    background-color: #EAEAEA; 
 }
 .ln-letters a.ln-disabled { 
-    color:#ccc; 
+    color: #CCC; 
 }
 .ln-letter-count { 
-    text-align:center; 
-    font-size:0.8em; 
-    line-height:1; 
-    margin-top:90px; 
-    color:#336699; 
+    text-align: center; 
+    font-size: 0.8em; 
+    line-height: 1; 
+    margin-top: 125px; 
+    color: #4B0082;
+}
+/* section */
+section {
+    margin: 0px 30px 0px 30px;
+    padding: 10px;
+    border: 1px dotted #D8BFD8;
+    font-family: Arial, Helvitica, sans-serif;
+}
+/* word definition */
+h1#word {
+    margin-left: 30px;
+    color: #4B0082;
+}
+div#definition {
+    display: table;
+    width: 100%;
+}
+div#definition dl {
+    display: table-cell;
+    float: left;
+    vertical-align: top;
+}
+div#definition dt {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    color: #4B0082;
+}
+div#definition dt:first-child {
+    margin-top: -10px;
+}
+div#definition dd {
+    margin-left: 20px;
+    color: #555;
+}
+div#definition figure {
+    display: table-cell;
+    width: 200px;
+    vertical-align: top;
+}
+div#definition figure img {
+    width: 200px;
+    border: 0;
+    margin-left: 30px;
+    margin-right: 5px;
+}
+div#definition figcaption {
+    text-align: center;
+    font-size: small;
+    color: #777;
+}
+/* word list */
+ul#wordlist {
+    display: table;
+    width: 100%;
+}
+ul#wordlist li {
+    list-style-type: none;
+    width: 23%;
+    float: left;
+    margin-top: 7px;
+    margin-right: 10px;
+}
+ul#wordlist li:nth-of-type(4 * n) {
+    float: none;
+}
+ul#wordlist a, ul#wordlist a:visited {
+    color: #4B0082;
+    text-decoration: none;
+}
+/* footer */
+footer {
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    font-size: 0.7em;
+}
+footer a#button, footer a#button:visited {
+    float: left;
+    margin-left: 20px;
+    padding: 2px 5px 2px 5px;
+    background-color: #DDD;
+    border: 1px solid #4B0082;
+    border-radius: 10px;
+    color: #4B0082;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+footer a, footer a:visited {
+    text-decoration: none;
+    color: #D8BFD8;
+    margin-right: 5px;
+}
+footer span {
+    margin-right: 10px;
+    color: #60A;
+    font-size: 0.9em;
 }
