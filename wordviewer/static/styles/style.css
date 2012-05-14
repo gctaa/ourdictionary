@@ -14,26 +14,19 @@ header h1 {
     background-color: #9932CC;
     color: #FFF;
 }
-header h1 a, header h1 a:visited, header h1 span {
+header nav {
+    padding: 20px;
     float: left;
     font-weight: normal;
-    font-size: 0.7em;
+    font-size: 1.5em;
     margin-right: 15px;
 }
-header h1 a, header h1 a:visited {
+header nav a, header nav a:visited {
     text-decoration: none;
     color: #D8BFD8;
 }
-header h2 {
-    margin: 0px 0px 0px 0px;
-    padding: 5px 70px 5px 25px;
-    border: 1px solid #9932CC;
-    border-radius: 0px 0px 30px 30px;
-    text-align: right;
-}
-header h2 a, header h2 a:visited {
-    text-decoration: none;
-    font-weight: normal;
+header nav a, header nav span {
+    margin-right: 10px;
 }
 /* jQuery nav plugin */
 div#wordlist-nav {
@@ -131,13 +124,14 @@ ul#wordlist {
 }
 ul#wordlist li {
     list-style-type: none;
+    display: inline-block;
     width: 23%;
-    float: left;
     margin-top: 7px;
     margin-right: 10px;
 }
-ul#wordlist li:nth-of-type(4 * n) {
-    float: none;
+ul#wordlist li:nth-of-type(4n):after {
+    content: "\A";
+    white-space: pre;
 }
 ul#wordlist a, ul#wordlist a:visited {
     color: #4B0082;
