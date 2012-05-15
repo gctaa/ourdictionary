@@ -40,3 +40,6 @@ class WordEntry(models.Model):
       date_modified =models.DateTimeField(auto_now=True)
       def __unicode__(self):
           return "%s (%s)"% (self.name,self.part)
+     
+      class Meta:
+           ordering = ["name"]
