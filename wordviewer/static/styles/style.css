@@ -165,3 +165,10 @@ footer span {
     color: #60A;
     font-size: 0.9em;
 }
+img.logo {
+    padding-left: 69em;
+    margin-top:-10em;
+    padding-bottom:1.1em;
+    width: 8em;
+}
+
