@@ -165,8 +165,10 @@ footer span {
     color: #60A;
     font-size: 0.9em;
 }
-a.ponybadge {
+footer #django {
     float: right;
+    padding-right:10em;
+    margin-top: -1.5em;
     width: 8em;
 }
 
