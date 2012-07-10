@@ -7,7 +7,8 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
-from wordviewer.models import WordEntry
+from wordviewer.models import WordEntry, SitePreferences
+from django.core.exceptions import ValidationError
 
 class WordEntryForm(forms.ModelForm):
     class Meta:
@@ -60,7 +61,13 @@ class TokenRegistrationForm(RichUserCreationForm):
         if data != settings.REGISTRATION_TOKEN:
             raise forms.ValidationError("Incorrect Registration Token!")
         return data
-            
+
+
+class SitePreferencesForm(forms.ModelForm):
+    class Meta:
+       model = SitePreferences
+
+
 def register(request):
     if request.method == 'POST':
         if settings.REGISTRATION_TOKEN:
