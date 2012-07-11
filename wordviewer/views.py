@@ -63,9 +63,11 @@ class TokenRegistrationForm(RichUserCreationForm):
         return data
 
 
-class SitePreferencesForm(forms.ModelForm):
-    class Meta:
-       model = SitePreferences
+class SitePreferencesUpdateView(UpdateView):
+    template_name = 'wordviewer/admin/sitepreferences.html'
+    def get_object(self):
+        object = SitePreferences.objects.get(id=1)
+        return object
 
 
 def register(request):

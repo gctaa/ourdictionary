@@ -2,7 +2,8 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.views.generic import CreateView, ListView, DetailView, RedirectView
 from wordviewer.models import WordEntry
-from wordviewer.views import register, WordEntryCreationView, WordEntryUpdateView
+from wordviewer.views import (register, WordEntryCreationView,
+    WordEntryUpdateView, SitePreferencesUpdateView)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login, logout
 
@@ -20,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^register/$', register),
     url(r'^login/$', login),
     url(r'^logout/$', logout, {'next_page': '/'}),
+    url(r'^sitepreferences/$', SitePreferencesUpdateView.as_view()),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
