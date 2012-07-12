@@ -1,5 +1,10 @@
 /* Import Google Fonts */
 @import url(http://fonts.googleapis.com/css?family=Oswald);
+#sitelogo{
+    height: 80px;
+    float: left;
+}
+
 body {
     margin-top: 0;
     margin-left: 0;

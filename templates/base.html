@@ -11,6 +11,9 @@
 
 <body>
 <header>
+{% if preferences.logo %}
+<img id="sitelogo" src={{preferences.logo.url}}>
+{% endif %}
 <nav>
 <a href="/words/">Home</a>
 {% if perms.wordviewer.change_sitepreferences %}
