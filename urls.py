@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^register/$', register),
     url(r'^login/$', login),
     url(r'^logout/$', logout, {'next_page': '/'}),
-    url(r'^sitepreferences/$', SitePreferencesUpdateView.as_view()),
+    url(r'^sitepreferences/$', SitePreferencesUpdateView.as_view(success_url="/words/")),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
