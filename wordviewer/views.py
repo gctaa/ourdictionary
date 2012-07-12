@@ -75,6 +75,10 @@ class SitePreferencesUpdateView(UpdateView):
         return super(SitePreferencesUpdateView, self).dispatch(*args, **kwargs)
 
 
+def site_preferences(request):
+    return {'preferences': SitePreferences.objects.get(id=1),}
+
+
 def register(request):
     if request.method == 'POST':
         if settings.REGISTRATION_TOKEN:
