@@ -11,7 +11,24 @@
 
 <body>
 <header>
-<nav><a href="/words/">Home</a> {% block topbar %}{% if user.is_authenticated %}<a href="/logout/">Logout</a><span>{{user.username}}</span>{% else %}<a href="/login/">Login</a>{% endif %}{% endblock %}</nav> <h1>Our Dictionary</h1>
+{% if preferences.logo %}
+<img id="sitelogo" src={{preferences.logo.url}}>
+{% endif %}
+<nav>
+<a href="/words/">Home</a>
+{% if perms.wordviewer.change_sitepreferences %}
+<a href="/sitepreferences/">Preferences</a>
+{% endif %}
+{% block topbar %}
+{% if user.is_authenticated %}
+<a href="/logout/">Logout</a>
+<span>{{user.username}}</span>
+{% else %}
+<a href="/login/">Login</a>
+{% endif %}
+{% endblock %}
+</nav>
+<h1>{{ preferences.name }}</h1>
 {% block letter-nav %}{% endblock %}
 </header>
 {% block heading %}{% endblock %}

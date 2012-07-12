@@ -4,10 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
-from wordviewer.models import WordEntry
+from wordviewer.models import WordEntry, SitePreferences
+from django.core.exceptions import ValidationError
 
 class WordEntryForm(forms.ModelForm):
     class Meta:
@@ -60,7 +61,24 @@ class TokenRegistrationForm(RichUserCreationForm):
         if data != settings.REGISTRATION_TOKEN:
             raise forms.ValidationError("Incorrect Registration Token!")
         return data
-            
+
+
+class SitePreferencesUpdateView(UpdateView):
+    template_name = 'wordviewer/admin/sitepreferences_form.html'
+   
+    def get_object(self):
+        object = SitePreferences.objects.get(id=1)
+        return object
+
+    @method_decorator(permission_required('wordviewer.change_sitepreferences'))
+    def dispatch(self, *args, **kwargs):
+        return super(SitePreferencesUpdateView, self).dispatch(*args, **kwargs)
+
+
+def site_preferences(request):
+    return {'preferences': SitePreferences.objects.get(id=1),}
+
+
 def register(request):
     if request.method == 'POST':
         if settings.REGISTRATION_TOKEN:

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form enctype="multipart/form-data" action="/sitepreferences/" method="post"> {% csrf_token %}
+      {{form.errors}}
+      {{form.as_p}}
+      <input type="submit" name="submit" value="Submit">
+    </form>
+{% endblock %}
+

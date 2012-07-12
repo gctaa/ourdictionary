@@ -2,6 +2,7 @@ from django.db import models
 from stdimage import StdImageField
 from south.modelsinspector import add_introspection_rules
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 # Rules for South to migrate the custom StdImageField, don't touch
@@ -16,7 +17,6 @@ rules = [
      ),
 ]
 add_introspection_rules(rules, ["^stdimage\.fields",])
-
 
 
 class WordEntry(models.Model):
@@ -43,3 +43,14 @@ class WordEntry(models.Model):
      
       class Meta:
            ordering = ["name"]
+
+
+class SitePreferences(models.Model):
+      name = models.CharField(blank  = True , max_length=30 )
+      logo = StdImageField(blank = True, upload_to="logophoto/",
+          size=(1024,768), thumbnail_size=(300,225))
+
+      def clean(self):
+          model = self.__class__
+          if (model.objects.count() > 0 and self.id != model.objects.get().id):
+              raise ValidationError('Can only create one %s instance' % model.__name__)
