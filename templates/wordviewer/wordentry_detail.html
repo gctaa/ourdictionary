@@ -6,14 +6,22 @@
 <dl>
   <dt>Definition:</dt>
   <dd>{{object.definition}}</dd>
+
+  {% if object.translations %}
+  <dt>Translation(s):</dt>
+  <dd>{{object.translations}}</dd>
+  {% endif %}
+
   {% if object.synonyms %}
-  <dt>Synonyms:</dt>
+  <dt>Synonym(s):</dt>
   <dd>{{object.synonyms}}</dd>
   {% endif %}
+
   {% if object.example_sentence %}
-  <dt>Example Sentence:</dt>
+  <dt>Example Sentence(s):</dt>
   <dd>{{object.example_sentence}}</dd>
   {% endif %}
+
 </dl>
 {% if object.photo %}
 <figure>

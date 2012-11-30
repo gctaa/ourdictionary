@@ -78,6 +78,21 @@ section {
     border: 1px dotted #D8BFD8;
     font-family: Arial, Helvitica, sans-serif;
 }
+/* entry field wrapper */
+div.fieldWrapper label:first-child {
+	display: block;
+	font-size: 1.2 em;
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	color: indigo;
+}
+div.fieldWrapper label[for="photo-clear_id"] {
+	display: inline;
+	font-size: 0.8em;
+	vertical-align: top;
+	text-align: left;
+}
 /* word definition */
 h1#word {
     margin-left: 30px;
