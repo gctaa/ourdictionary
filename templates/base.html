@@ -16,6 +16,9 @@
 {% endif %}
 <nav>
 <a href="/words/">Home</a>
+{% if perms.wordviewer.view_users %}
+<a href="/users/">Users</a>
+{% endif %}
 {% if perms.wordviewer.change_sitepreferences %}
 <a href="/sitepreferences/">Preferences</a>
 {% endif %}

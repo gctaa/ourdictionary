@@ -5,8 +5,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, ListView
 from wordviewer.models import WordEntry, SitePreferences
 from django.core.exceptions import ValidationError
 
@@ -39,6 +40,14 @@ class WordEntryUpdateView(UpdateView):
         object.user_last_modified = self.request.user
         object.save()
         return HttpResponseRedirect("/words/")
+
+class UserListView(ListView):
+    model = User
+
+    @method_decorator(permission_required('wordviewer.view_users'))
+    def dispatch(self, *args, **kwargs):
+        return super(UserListView, self).dispatch(*args, **kwargs)
+
 
 class RichUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label = "First name")
