@@ -56,6 +56,11 @@ class UserProfileView(DetailView):
     def dispatch(self, *args, **kwargs):
         return super(UserProfileView, self).dispatch(*args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileView, self).get_context_data(**kwargs)
+        context["user_word_entries"] = WordEntry.objects.filter(user_creator=self.object)
+        return context
+
 
 class RichUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label = "First name")

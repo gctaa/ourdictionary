@@ -34,7 +34,7 @@ header nav a, header nav span {
     margin-right: 10px;
 }
 /* jQuery nav plugin */
-div#wordlist-nav {
+div#wordlist-nav, div#userlist-nav {
     display: table;
     margin-left: auto;
     margin-right: auto;
@@ -78,20 +78,25 @@ section {
     border: 1px dotted #D8BFD8;
     font-family: Arial, Helvitica, sans-serif;
 }
+/* user entries list */
+#userentries td {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 /* entry field wrapper */
 div.fieldWrapper label:first-child {
-	display: block;
-	font-size: 1.2 em;
-	font-weight: bold;
-	margin-top: 20px;
-	margin-bottom: 5px;
-	color: indigo;
+    display: block;
+    font-size: 1.2 em;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: indigo;
 }
 div.fieldWrapper label[for="photo-clear_id"] {
-	display: inline;
-	font-size: 0.8em;
-	vertical-align: top;
-	text-align: left;
+    display: inline;
+    font-size: 0.8em;
+    vertical-align: top;
+    text-align: left;
 }
 /* word definition */
 h1#word {
