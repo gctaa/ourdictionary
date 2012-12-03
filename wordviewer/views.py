@@ -58,7 +58,7 @@ class UserProfileView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data(**kwargs)
-        context["user_word_entries"] = WordEntry.objects.filter(user_creator=self.object)
+        context["user_word_entries"] = WordEntry.objects.filter(user_creator=self.object).order_by("-date_created")
         return context
 
 
