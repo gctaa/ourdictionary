@@ -83,6 +83,26 @@ section {
     padding-left: 10px;
     padding-right: 10px;
 }
+/* user list */
+ul#userlist {
+    display: table;
+    width: 100%;
+}
+ul#userlist li {
+    list-style-type: none;
+    display: inline-block;
+    width: 23%;
+    margin-top: 7px;
+    margin-right: 10px;
+}
+ul#userlist li:nth-of-type(4n):after {
+    content: "\A";
+    white-space: pre;
+}
+ul#userlist a, ul#userlist a:visited {
+    color: #4B0082;
+    text-decoration: none;
+}
 /* entry field wrapper */
 div.fieldWrapper label:first-child {
     display: block;
