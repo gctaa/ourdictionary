@@ -5,8 +5,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, ListView, DetailView
 from wordviewer.models import WordEntry, SitePreferences
 from django.core.exceptions import ValidationError
 
@@ -39,6 +40,27 @@ class WordEntryUpdateView(UpdateView):
         object.user_last_modified = self.request.user
         object.save()
         return HttpResponseRedirect("/words/")
+
+class UserListView(ListView):
+    model = User
+
+    @method_decorator(permission_required('wordviewer.view_users'))
+    def dispatch(self, *args, **kwargs):
+        return super(UserListView, self).dispatch(*args, **kwargs)
+
+class UserProfileView(DetailView):
+    model = User
+    slug_field = 'username'
+
+    @method_decorator(permission_required('wordviewer.view_users'))
+    def dispatch(self, *args, **kwargs):
+        return super(UserProfileView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileView, self).get_context_data(**kwargs)
+        context["user_word_entries"] = WordEntry.objects.filter(user_creator=self.object).order_by("-date_created")
+        return context
+
 
 class RichUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label = "First name")

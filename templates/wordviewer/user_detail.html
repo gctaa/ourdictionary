@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{object.last_name}}, {{object.first_name}}</h1>
+
+<h3>Words created</h3>
+<table id="userentries">
+    <tr>
+        <th>Entry Name</th>
+        <th>Date Created</th>
+    <tr>
+{% for word_entry in user_word_entries %}
+    <tr>
+        <td><a href="/words/{{word_entry.id}}">{{word_entry}}</a></td>
+        <td>{{word_entry.date_created}}</td>
+    </tr>
+{% endfor %}
+</table>
+    
+
+{% endblock %}

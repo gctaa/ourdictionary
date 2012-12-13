@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+
+<script type="text/javascript" src="/static/js/jquery.listnav.min-2.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#userlist").listnav({includeNums:false});
+});
+</script>
+
+{% endblock %}
+
+{% block letter-nav %}<div id="userlist-nav"></div>{% endblock %}
+
+{% block content %}
+
+<ul id="userlist">
+{% for user in object_list %}
+<li><a href="/users/{{user.username}}">{{user.last_name}}, {{user.first_name}}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
