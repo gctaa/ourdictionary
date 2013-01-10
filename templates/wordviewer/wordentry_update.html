@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+
+{% block title %}{{object.name}} ({{object.part}}) - Our Dictionary{% endblock %}
+
+{% block heading %}<h1 id="word">{{object.name}} <span>({{object.part}})</span></h1>{% endblock %}
+
 {% block content %}
 <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
     {% for hidden in form.hidden_fields %}
