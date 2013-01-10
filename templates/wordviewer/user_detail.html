@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
+{% block heading %}<h1 id="user">{{object.last_name}}, {{object.first_name}}</h1>{% endblock %}
 {% block content %}
-<h1>{{object.last_name}}, {{object.first_name}}</h1>
 
 <h3>Words created</h3>
 <table id="userentries">
