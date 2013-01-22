@@ -7,7 +7,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView, ListView, DetailView
+from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
 from wordviewer.models import WordEntry, SitePreferences
 from django.core.exceptions import ValidationError
 
@@ -40,6 +40,14 @@ class WordEntryUpdateView(UpdateView):
         object.user_last_modified = self.request.user
         object.save()
         return HttpResponseRedirect("/words/")
+
+class WordEntryDeletionView(DeleteView):
+    model = WordEntry
+    success_url = "/words/"
+
+    @method_decorator(permission_required('wordviewer.delete_entry'))
+    def dispatch(self, *args, **kwargs):
+        return super(WordEntryDeletionView, self).dispatch(*args, **kwargs)
 
 class UserListView(ListView):
     model = User

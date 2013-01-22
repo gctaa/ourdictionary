@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
+{% block title %}{{object.name}} ({{object.part}}) - {{preferences.name}}{% endblock %}
+
 {% block heading %}<h1 id="word">{{object.name}} <span>({{object.part}})</span></h1>{% endblock %}
+
 {% block content %}
 <div id="definition">
 <dl>
@@ -34,6 +37,7 @@
 
 {% block footer %}
 {% if user.is_authenticated %}<a id="button" href="/update_entry/{{object.id}}">Edit this entry</a>{% endif %}
+{% if perms.wordviewer.delete_entry %}<a id="button" href="/delete_entry/{{object.id}}">Delete this entry</a>{% endif %}
 <span>Created by {{object.user_creator.get_full_name}} on {{object.date_created}}</span>
 <span>Last Modified by {{object.user_last_modified.get_full_name}} on {{object.date_modified}}</span><br>
 {% endblock %}

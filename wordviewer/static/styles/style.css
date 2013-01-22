@@ -78,7 +78,11 @@ section {
     border: 1px dotted #D8BFD8;
     font-family: Arial, Helvitica, sans-serif;
 }
-/* user entries list */
+/* user detail view */
+h1#user {
+    margin-left: 30px;
+    color: #4B0082;
+}
 #userentries td {
     padding-left: 10px;
     padding-right: 10px;
