@@ -26,6 +26,10 @@ class WordEntry(models.Model):
       ("adjective","Adjective"),
       ("pronoun","Pronoun"),
       ("adverb","Adverb"),
+      ("preposition", "Preposition"),
+      ("conjuction", "Conjunction"),
+      ("interjection", "Interjection"),
+      ("determiner", "Determiner"),
       )
       name = models.CharField(max_length=30)
       part = models.CharField(max_length=15,verbose_name="Part of speech",choices=PART_CHOICES)
