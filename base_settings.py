@@ -12,7 +12,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = "/words/"
+LOGIN_REDIRECT_URL = "/dictionaries/"
 
 TIME_ZONE = 'America/New_York'
 

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul id="wordlist">
+{% for item in object_list %}  <li><a href="/dictionaries/{{item.id}}/words">{{item}}</a></li>
+{% endfor %}</ul>
+{% endblock %}
+
+{% block footer %}{% if user.is_staff %}<a id="button" href="/create_dictionary/">Add a dictionary...</a>{% endif %}{% endblock %}

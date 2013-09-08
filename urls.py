@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.views.generic import CreateView, ListView, DetailView, RedirectView, DeleteView
-from wordviewer.models import WordEntry
-from wordviewer.views import (register, WordEntryCreationView, WordEntryUpdateView, WordEntryDeletionView, UserListView, UserProfileView, SitePreferencesUpdateView)
+from wordviewer.models import WordEntry, Dictionary
+from wordviewer.views import (register, WordEntryCreationView, WordEntryUpdateView, WordEntryDeletionView, UserListView, UserProfileView, SitePreferencesUpdateView, DictionaryCreationView, WordListView)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login, logout
 from django.contrib.auth.models import User
@@ -13,11 +13,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', RedirectView.as_view(url="/words/")),
+    url(r'^$', RedirectView.as_view(url="/dictionaries/")),
     url(r'^create_entry/$', WordEntryCreationView.as_view(template_name="wordviewer/wordentry_form.html")),
+    url(r'^create_dictionary/$', DictionaryCreationView.as_view(template_name="wordviewer/dictionary_form.html")),
     url(r'^update_entry/(?P<pk>\d+)/$', WordEntryUpdateView.as_view(template_name="wordviewer/wordentry_update.html")),
     url(r'^delete_entry/(?P<pk>\d+)/$', WordEntryDeletionView.as_view(template_name="wordviewer/wordentry_delete.html")),
-    url(r'^words/$', ListView.as_view(model=WordEntry, queryset=WordEntry.objects.order_by('name'))),
+    url(r'^dictionaries/(?P<pk>\d+)/words/$', WordListView.as_view()),
+    url(r'^dictionaries/$', ListView.as_view(model=Dictionary)),
     url(r'^words/(?P<pk>\d+)/$', DetailView.as_view(model=WordEntry)), 
     url(r'^register/$', register),
     url(r'^login/$', login),

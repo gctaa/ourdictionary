@@ -2,13 +2,13 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
-from wordviewer.models import WordEntry, SitePreferences
+from wordviewer.models import WordEntry, SitePreferences, Dictionary
 from django.core.exceptions import ValidationError
 
 class WordEntryForm(forms.ModelForm):
@@ -27,7 +27,7 @@ class WordEntryCreationView(CreateView):
         object.user_creator = self.request.user
         object.user_last_modified = self.request.user
         object.save()
-        return HttpResponseRedirect("/words/")
+        return HttpResponseRedirect("/dictionaries/")
 
 class WordEntryUpdateView(UpdateView):
     model = WordEntry
@@ -39,15 +39,22 @@ class WordEntryUpdateView(UpdateView):
         object = form.save(commit=False)
         object.user_last_modified = self.request.user
         object.save()
-        return HttpResponseRedirect("/words/")
+        return HttpResponseRedirect("/dictionaries/")
 
 class WordEntryDeletionView(DeleteView):
     model = WordEntry
-    success_url = "/words/"
+    success_url = "/dictionaries/"
 
     @method_decorator(permission_required('wordviewer.delete_entry'))
     def dispatch(self, *args, **kwargs):
         return super(WordEntryDeletionView, self).dispatch(*args, **kwargs)
+
+class WordListView(ListView):
+    model = WordEntry
+    def get_queryset(self):
+        dictionary = self.request.path.encode().split('/')[2]
+        return WordEntry.objects.filter(dictionary_id=dictionary)
+    #queryset = WordEntry.objects.filter(dictionary_id=dictionary)
 
 class UserListView(ListView):
     model = User
@@ -126,3 +133,20 @@ def register(request):
     return render_to_response("registration/register.html", {
         'form': form,
     }, context_instance=RequestContext(request))
+    
+class DictionaryForm(forms.ModelForm):
+    class Meta:
+        model = Dictionary
+        exclude = ("owner")
+
+class DictionaryCreationView(CreateView):
+    form_class = DictionaryForm
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DictionaryCreationView, self).dispatch(*args, **kwargs)
+    def form_valid(self, form):
+        object = form.save(commit=False)
+        object.owner = self.request.user
+        object.save()
+        return HttpResponseRedirect("/dictionaries/")
+

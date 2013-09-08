@@ -19,6 +19,13 @@ rules = [
 add_introspection_rules(rules, ["^stdimage\.fields",])
 
 
+class Dictionary(models.Model):
+    subject = models.CharField(max_length=20)
+    owner = models.ForeignKey(User)
+    def __unicode__(self):
+        return "%s"% (self.subject)
+
+
 class WordEntry(models.Model):
       PART_CHOICES = (
       ("noun","Noun"),
@@ -43,6 +50,7 @@ class WordEntry(models.Model):
       user_last_modified = models.ForeignKey(User,related_name="entry_modifiers")
       date_created = models.DateTimeField(auto_now_add=True)
       date_modified =models.DateTimeField(auto_now=True)
+      dictionary = models.ForeignKey(Dictionary, null=True)
       def __unicode__(self):
           return "%s (%s)"% (self.name,self.part)
      
