@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
+{% block scripts %}
+<script  type="text/javascript" src="/static/js/jquery.listnav.min-2.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#wordlist").listnav({includeNums:false});
+});
+</script>
+{% endblock %}
+
+{% block letter-nav %}<div id="wordlist-nav"></div>{% endblock %}
+
 {% block content %}
 <ul id="wordlist">
 {% for item in object_list %}  <li><a href="/dictionaries/{{item.id}}/words">{{item}}</a></li>
