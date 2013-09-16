@@ -83,4 +83,4 @@ BASE_INSTALLED_APPS = (
     'south',
 )
 
-
+REGISTRATION_TOKEN = ""
