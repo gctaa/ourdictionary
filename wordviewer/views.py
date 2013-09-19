@@ -15,9 +15,8 @@ class WordEntryForm(forms.ModelForm):
     class Meta:
        model = WordEntry
        exclude = ("user_creator", "user_last_modified")
-    
+  
 class WordEntryCreationView(CreateView):
-    
     form_class = WordEntryForm
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -51,10 +50,14 @@ class WordEntryDeletionView(DeleteView):
 
 class WordListView(ListView):
     model = WordEntry
+
+    def get_context_data(self, **kwargs):
+        context = super(WordListView, self).get_context_data(**kwargs)
+        context["dictionary"] = get_object_or_404(Dictionary, pk=self.kwargs['pk'])
+        return context
+
     def get_queryset(self):
-        dictionary = self.request.path.encode().split('/')[2]
-        return WordEntry.objects.filter(dictionary_id=dictionary)
-    #queryset = WordEntry.objects.filter(dictionary_id=dictionary)
+        return WordEntry.objects.filter(dictionary_id=self.kwargs['pk'])
 
 class UserListView(ListView):
     model = User
@@ -114,7 +117,6 @@ class SitePreferencesUpdateView(UpdateView):
 
 def site_preferences(request):
     return {'preferences': SitePreferences.objects.get(id=1),}
-
 
 def register(request):
     if request.method == 'POST':

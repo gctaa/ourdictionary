@@ -10,8 +10,8 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block letter-nav %}<div id="wordlist-nav"></div>{% endblock %}
-
 {% block content %}
+<h1>{{dictionary}}</h1>
 <ul id="wordlist">
 {% for item in object_list %}  <li><a href="/words/{{item.id}}/">{{item}}</a></li>
 {% endfor %}</ul>
