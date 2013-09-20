@@ -23,7 +23,6 @@ class WordEntryCreationView(CreateView):
             return super(WordEntryCreationView, self).dispatch(*args, **kwargs)
     
     def get_context_data(self, **kwargs):
-        import pdb; pdb.set_trace();
         context = super(WordEntryCreationView, self).get_context_data(**kwargs)
         context["dictionary"] = get_object_or_404(Dictionary, pk=self.request.META['HTTP_REFERER'].split('/')[4])
         return context
