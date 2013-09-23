@@ -12,7 +12,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = "/words/"
+LOGIN_REDIRECT_URL = "/dictionaries/"
 
 TIME_ZONE = 'America/New_York'
 
@@ -68,6 +68,7 @@ TEMPLATE_DIRS = (
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
     'wordviewer.views.site_preferences',
+    'django.core.context_processors.request',
 )
 
 BASE_INSTALLED_APPS = (
@@ -83,4 +84,30 @@ BASE_INSTALLED_APPS = (
     'south',
 )
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
 
+WSGI_APPLICATION = 'wsgi.application'
+
+REGISTRATION_TOKEN = ""
