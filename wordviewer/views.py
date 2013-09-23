@@ -14,10 +14,11 @@ from django.core.exceptions import ValidationError
 class WordEntryForm(forms.ModelForm):
     class Meta:
        model = WordEntry
-       exclude = ("user_creator", "user_last_modified")
+       exclude = ("user_creator", "user_last_modified", "dictionary")
   
 class WordEntryCreationView(CreateView):
     form_class = WordEntryForm
+    dictionary = ''
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
             return super(WordEntryCreationView, self).dispatch(*args, **kwargs)
@@ -25,12 +26,14 @@ class WordEntryCreationView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(WordEntryCreationView, self).get_context_data(**kwargs)
         context["dictionary"] = get_object_or_404(Dictionary, pk=self.request.META['HTTP_REFERER'].split('/')[4])
+        WordEntryCreationView.dictionary = context["dictionary"]
         return context
 
     def form_valid(self, form):
         object = form.save(commit=False)
         object.user_creator = self.request.user
         object.user_last_modified = self.request.user
+        object.dictionary = self.dictionary
         object.save()
         return HttpResponseRedirect("/dictionaries/")
 
