@@ -35,7 +35,7 @@ class WordEntryCreationView(CreateView):
         object.user_last_modified = self.request.user
         object.dictionary = self.dictionary
         object.save()
-        return HttpResponseRedirect("/dictionaries/")
+        return HttpResponseRedirect("/dictionaries/" + str(object.dictionary.id) + "/words/")
 
 class WordEntryUpdateView(UpdateView):
     model = WordEntry
@@ -47,7 +47,7 @@ class WordEntryUpdateView(UpdateView):
         object = form.save(commit=False)
         object.user_last_modified = self.request.user
         object.save()
-        return HttpResponseRedirect("/dictionaries/")
+        return HttpResponseRedirect("/dictionaries/" + str(object.dictionary.id) + "/words/")
 
 class WordEntryDeletionView(DeleteView):
     model = WordEntry
