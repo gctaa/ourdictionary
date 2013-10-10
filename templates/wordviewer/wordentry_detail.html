@@ -7,8 +7,10 @@
 {% block content %}
 <div id="definition">
 <dl>
+  {% if object.definition %}
   <dt>Definition:</dt>
   <dd>{{object.definition}}</dd>
+  {% endif %}
 
   {% if object.translations %}
   <dt>Translation(s):</dt>
