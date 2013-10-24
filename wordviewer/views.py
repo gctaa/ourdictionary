@@ -15,7 +15,13 @@ class WordEntryForm(forms.ModelForm):
     class Meta:
        model = WordEntry
        exclude = ("user_creator", "user_last_modified", "dictionary")
-  
+
+    def clean(self):
+        cleaned_data = super(WordEntryForm, self).clean()
+        if self.is_valid():
+            return cleaned_data
+        return  HttpResponseRedirect("wordviewer/wordentry_form.html")
+             
 class WordEntryCreationView(CreateView):
     form_class = WordEntryForm
     dictionary = ''
@@ -25,9 +31,12 @@ class WordEntryCreationView(CreateView):
     
     def get_context_data(self, **kwargs):
         context = super(WordEntryCreationView, self).get_context_data(**kwargs)
-        context["dictionary"] = get_object_or_404(Dictionary, pk=self.request.META['HTTP_REFERER'].split('/')[4])
-        WordEntryCreationView.dictionary = context["dictionary"]
-        return context
+        if self.dictionary == '':
+            context["dictionary"] = get_object_or_404(Dictionary, pk=self.request.META['HTTP_REFERER'].split('/')[4])
+            WordEntryCreationView.dictionary = context["dictionary"]
+            return context
+        else:
+            return context
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -35,6 +44,7 @@ class WordEntryCreationView(CreateView):
         object.user_last_modified = self.request.user
         object.dictionary = self.dictionary
         object.save()
+        WordEntryCreationView.dictionary = ''
         return HttpResponseRedirect("/dictionaries/" + str(object.dictionary.id) + "/words/")
 
 class WordEntryUpdateView(UpdateView):
