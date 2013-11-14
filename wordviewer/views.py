@@ -42,7 +42,7 @@ class WordEntryCreationView(CreateView):
         object = form.save(commit=False)
         object.user_creator = self.request.user
         object.user_last_modified = self.request.user
-        object.dictionary = self.dictionary
+        object.dictionary = WordEntryCreationView.dictionary
         object.save()
         WordEntryCreationView.dictionary = ''
         return HttpResponseRedirect("/dictionaries/" + str(object.dictionary.id) + "/words/")
