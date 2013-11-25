@@ -31,7 +31,7 @@ class WordEntryCreationView(CreateView):
     
     def get_context_data(self, **kwargs):
         context = super(WordEntryCreationView, self).get_context_data(**kwargs)
-        if self.dictionary == '':
+        if WordEntryCreationView.dictionary == '':
             context["dictionary"] = get_object_or_404(Dictionary, pk=self.request.META['HTTP_REFERER'].split('/')[4])
             WordEntryCreationView.dictionary = context["dictionary"]
             return context
