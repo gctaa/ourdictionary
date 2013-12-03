@@ -14,7 +14,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', RedirectView.as_view(url="/dictionaries/")),
-    url(r'^create_entry/$', WordEntryCreationView.as_view(template_name="wordviewer/wordentry_form.html")),
+    url(r'^create_entry/(?P<pk>\d+)/$', WordEntryCreationView.as_view(template_name="wordviewer/wordentry_form.html")),
     url(r'^create_dictionary/$', DictionaryCreationView.as_view(template_name="wordviewer/dictionary_form.html")),
     url(r'^update_entry/(?P<pk>\d+)/$', WordEntryUpdateView.as_view(template_name="wordviewer/wordentry_update.html")),
     url(r'^delete_entry/(?P<pk>\d+)/$', WordEntryDeletionView.as_view(template_name="wordviewer/wordentry_delete.html")),

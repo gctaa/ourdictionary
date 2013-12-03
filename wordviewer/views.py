@@ -13,8 +13,14 @@ from django.core.exceptions import ValidationError
 
 class WordEntryForm(forms.ModelForm):
     class Meta:
-       model = WordEntry
-       exclude = ("user_creator", "user_last_modified", "dictionary")
+        model = WordEntry
+        exclude = ("user_creator", "user_last_modified", "dictionary")
+
+    def __init__(self, *args, **kwargs):
+        temp = kwargs.pop('dictionary')
+        super(WordEntryForm, self).__init__(*args, **kwargs)
+        kwargs['dictionary'] = temp
+        self.dictionary = kwargs["dictionary"]
 
     def clean(self):
         cleaned_data = super(WordEntryForm, self).clean()
@@ -24,25 +30,26 @@ class WordEntryForm(forms.ModelForm):
              
 class WordEntryCreationView(CreateView):
     form_class = WordEntryForm
-    dictionary = ''
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-            return super(WordEntryCreationView, self).dispatch(*args, **kwargs)
-    
+        return super(WordEntryCreationView, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super(WordEntryCreationView, self).get_form_kwargs()
+        kwargs['dictionary'] = get_object_or_404(Dictionary,pk=self.request.path.split('/')[2]).id
+        return kwargs     
+
     def get_context_data(self, **kwargs):
         context = super(WordEntryCreationView, self).get_context_data(**kwargs)
-        if WordEntryCreationView.dictionary == '':
-            context["dictionary"] = get_object_or_404(Dictionary, pk=self.request.META['HTTP_REFERER'].split('/')[4])
-            WordEntryCreationView.dictionary = context["dictionary"]
-            return context
-        else:
-            return context
+        context['dictionary'] = get_object_or_404(Dictionary,pk=self.request.path.split('/')[2])
+        return context
 
     def form_valid(self, form):
         object = form.save(commit=False)
         object.user_creator = self.request.user
         object.user_last_modified = self.request.user
-        object.dictionary = WordEntryCreationView.dictionary
+        object.dictionary = get_object_or_404(Dictionary,pk=int(self.kwargs['pk']))
         object.save()
         WordEntryCreationView.dictionary = ''
         return HttpResponseRedirect("/dictionaries/" + str(object.dictionary.id) + "/words/")
@@ -170,4 +177,3 @@ class DictionaryCreationView(CreateView):
         object.owner = self.request.user
         object.save()
         return HttpResponseRedirect("/dictionaries/")
-
