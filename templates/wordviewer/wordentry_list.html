@@ -17,4 +17,4 @@ $(document).ready(function() {
 {% endfor %}</ul>
 {% endblock %}
 
-{% block footer %}{% if user.is_authenticated %}<a id="button" href="/create_entry/">Add a word...</a>{% endif %}{% endblock %}
+{% block footer %}{% if user.is_authenticated %}<a id="button" href="/create_entry/{{dictionary.id}}/">Add a word...</a>{% endif %}{% endblock %}
