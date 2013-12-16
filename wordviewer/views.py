@@ -17,10 +17,13 @@ class WordEntryForm(forms.ModelForm):
         exclude = ("user_creator", "user_last_modified", "dictionary")
 
     def __init__(self, *args, **kwargs):
-        temp = kwargs.pop('dictionary')
-        super(WordEntryForm, self).__init__(*args, **kwargs)
-        kwargs['dictionary'] = temp
-        self.dictionary = kwargs["dictionary"]
+        try:
+            temp = kwargs.pop('dictionary')
+            super(WordEntryForm, self).__init__(*args, **kwargs)
+            kwargs['dictionary'] = temp
+            self.dictionary = kwargs["dictionary"]
+        except:
+            super(WordEntryForm, self).__init__(*args, **kwargs)
 
     def clean(self):
         cleaned_data = super(WordEntryForm, self).clean()
